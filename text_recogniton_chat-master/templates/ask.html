@@ -1,0 +1,182 @@
+
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+<html lang="en">
+<head>
+<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <title>Home page</title>
+
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+    <div class="container-fluid" >
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <img src="{{ url_for('static', filename='Images/sima-logo.png') }}" alt="" width="120" height="50" class="d-inline-block align-text-top">
+      <br></br>
+      
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/Home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/ask">Ask</a>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <a class="btn btn-outline-secondary" role="button"class="nav-link active" aria-current="page" href="/login" >Login</a>          
+          </form>
+      </div>
+    </div>
+  </nav>
+<div class="container">
+        <div class="mesgs">
+          <div class="msg_history">
+            
+            <div id = "chatbox" class="outgoing_msg">
+              <div class="sent_msg">
+
+                </div>
+            </div>
+            <div id = "userInput" class="incoming_msg">
+              <div class="incoming_msg_img"> <img src="{{ url_for('static', filename='Images/chatbot.png') }}" alt="Paris" width="70" height="70"> </div>
+              <div class="received_msg">
+                <div class="received_withd_msg">
+
+              </div>
+            </div>
+          
+          <div class="type_msg">
+            <div class="input_msg_write">
+              <input id ="textInput" type="text" class="write_msg" placeholder="Type a message" />
+              <button id = "buttonInput" class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true" value="Send"></i></button>
+              
+            </div>
+          </div>
+        </div>
+      </div><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <style>
+        
+      
+        body {
+font-family: monospace;
+}
+
+h3 {
+color: black;
+font-size: 20px;
+margin-top: 3px;
+text-align: center;
+}
+#chatbox {
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+margin-top: 60px;
+}
+#userInput {
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+margin-top: 60px;
+}
+#textInput {
+width: 90%;
+border: none;
+border-bottom: 3px solid black;
+font-family: monospace;
+font-size: 17px;
+}
+.userText {
+color: rgb(16, 10, 10);
+font-family: monospace;
+font-size: 17px;
+text-align: right;
+line-height: 40px;
+}
+.userText span {
+background-color: #60afda;
+padding: 7px;
+border-radius: 50px;
+}
+.botText {
+color: rgba(19, 17, 17, 0.607);
+font-family: monospace;
+font-size: 17px;
+text-align: left;
+line-height: 40px;
+}
+.botText span {
+background-color: #e1e3eb9e;
+padding: 7px;
+border-radius: 50px;
+}
+#tidbit {
+position: absolute;
+bottom: 0;
+right: 0;
+width: 300px;
+}
+
+.box {
+border: 2px solid black;
+}
+
+
+        </style>
+        </head>
+      
+      <script>
+        function getBotResponse(){
+           var rawText = $("#textInput").val();
+           var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
+           $("#textInput").val("");
+           $("#chatbox").append(userHtml);
+           document.getElementById('userInput').scrollIntoView({block:'start',behaviour:'smooth'});
+           $.get("/get", {msg:rawText }).done(function(data) {
+           var botHtml = '<p class ="botText"><span>' + data + '</span></p>';
+           $("#chatbox").append(botHtml);
+           document.getElementById('userInput').scrollIntoView({block : 'start',behaviour:'smooth'});
+       });
+       }
+       // $("#textInput").keypress(function(e) {
+       // if(e.which == 13) {
+       // getBotResponse();
+       // }
+       // });
+       $("#buttonInput").click(function() {
+           getBotResponse();
+       })
+       $("#textInput").keypress(function(e) {
+if (e.which == 13) {
+getBotResponse();
+}
+});
+</script>
+       </script>
+    </body>
+    </html>
