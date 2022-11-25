@@ -9,10 +9,25 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style3.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/all.css') }}">
+    
     <title>about page</title>
 </head>
 <body>
+  <style>
+    body {
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-image:url({{url_for('static', filename='Images/interface.png')}});
+     }
+ </style>
     
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     
@@ -45,6 +60,7 @@
       </div>
     </div>
   </nav>
+  
       <div class="box">
         <div >
           <dl>
@@ -59,7 +75,10 @@
         </div>
         
     </div>
+    <div class="container-fluid">
   <script src="/js/bootstrap.bundle.js"></script>
+
+  
       
   <br></br>
 <br></br>
@@ -80,7 +99,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #3b5998;"
-          href="#!"
+          href="https://www.facebook.com/"
           role="button"
           ><i class="fab fa-facebook-f "></i
         ></a>
@@ -89,7 +108,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #55acee;"
-          href="#!"
+          href="https://twitter.com/i/flow/login"
           role="button"
           ><i class="fab fa-twitter"></i
         ></a>
@@ -100,7 +119,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #0082ca;"
-          href="#!"
+          href="https://www.linkedin.com/"
           role="button"
           ><i class="fab fa-linkedin-in"></i
         ></a>
@@ -108,7 +127,8 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #333333;"
-          href="#!"
+          href="
+          https://github.com/"
           role="button"
           ><i class="fab fa-github"></i
         ></a>
@@ -120,7 +140,7 @@
     <!-- Copyright -->
     <div class="text-center p-3">
       © 2022 SIMAchatbot
-      <a class="text-white" href="https://SIMAchatbot.com/">SIMAchatbot</a>
+      <a class="text-white" href="https://SIMAchatbot.com/"></a>
     </div>
     <!-- Copyright -->
   </footer>

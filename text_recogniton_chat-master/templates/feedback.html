@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style3.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/all.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css">
+    <title>Feedback Widget</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+        <div class="container-fluid" >
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <img src="{{ url_for('static', filename='Images/sima-logo.png') }}" alt="" width="120" height="50" class="d-inline-block align-text-top" >
+          
+          <br></br>
+          
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/Home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/ask">Ask</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/logout">logout</a>
+              </li>
+              
+            </ul>
+            <form class="d-flex">
+              <a class="btn btn-outline-secondary" role="button"class="nav-link active" aria-current="page" href="/login" >Login</a>          
+              </form>
+          </div>
+        </div>
+      </nav>
+     
+      <style>
+        body {
+         
+         
+         background-repeat: no-repeat;
+      
+         background-size: cover;
+         background-image:url({{url_for('static', filename='Images/interface.png')}});
+         }
+     </style>
+   
+    <div class="m-5 col-md-3 align-center" >
+      
+       
+        <div class="form" class="center">
+          
+            <form  id="register">
+              <h4 style="color:rgb(238, 231, 231)"><span>Enter feedback Please! <i class="fas fa-comment-dots" style="color:rgb(252, 252, 252)"></i></span></h4>
+                <div class="stars">
+                    <input type="radio" name="rating" id="rating-5">
+                    <label for="rating-5" class="fas fa-star"></label>
+                    <input type="radio" name="rating" id="rating-4">
+                    <label for="rating-4" class="fas fa-star"></label>
+                    <input type="radio" name="rating" id="rating-3">
+                    <label for="rating-3" class="fas fa-star"></label>
+                    <input type="radio" name="rating" id="rating-2">
+                    <label for="rating-2" class="fas fa-star"></label>
+                    <input type="radio" name="rating" id="rating-1">
+                    <label for="rating-1" class="fas fa-star"></label>
+                </form>
+                    
+                
+                  
+                      <div class= "noposts">
+                        <form  class="form-group" action="/feedback" method="post">
+                          
+                         
+                          <input type="text" name="name" class="form-control" placeholder="Enter feedback Please"><br>
+                          <button class="btn btn-primary" type="submit" name="submit" value="add">Submit</button>
+                          </div>
+                        </form>
+                      
+                        
+                     
+                   
+                      <div class="container-fluid">
+                        {% for l in t %}
+                          <ul class="list-group">
+                            <li class="list-group-item">
+                              {{l}}
+                            </li>
+                          </ul>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    </form>
+</body>
+
+</html>

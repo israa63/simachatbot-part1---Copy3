@@ -1,4 +1,6 @@
 import re
+
+from httplib2 import Authentication
 import long_responses as long
 from flask import Flask,render_template,request
 
@@ -19,6 +21,8 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 
+# pub_key = "pk_test_tqCJtQ9f6ouxRfOkIUPDCvmO00q8KBcx76"
+
 auth = firebase.auth()
 
 db = firebase.database()
@@ -33,10 +37,20 @@ person = {"is_logged_in": False, "name": "", "email": "", "uid": ""}
 @app.route('/')
 
 def home():
-	return render_template('Home.html')
+    if auth.current_user != None:
+
+        session_username = db.child("users").child(auth.current_user["localId"]).child("username").get().val()
+        creditpoints = db.child("users").child(auth.current_user["localId"]).child("creditpoints").get().val()
+        return render_template("Home.html", pub_key=pub_key, session_username=session_username, creditpoints=creditpoints)
+    return render_template("Home.html", user_not_authenticated=True)
+
+
+
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
-
 def basic():
 	unsuccessful = 'Please check your credentials'
 	successful = 'Login successful'
@@ -49,16 +63,22 @@ def basic():
 		except:
 			return render_template('login.html', us=unsuccessful)
 
-	return render_template('login.html')
+	return render_template('login.html')    
+	
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    auth.current_user = None
+    return redirect("/")
+
+
+
+
 
 @app.route('/about')
-
 def about():
+    
 	return render_template('about.html')
-
-
-
-
 
 # def register():
 # 	unsuccessful = 'Please check your credentials'
@@ -86,12 +106,38 @@ def about():
 @app.route('/register', methods=['GET', 'POST'])
 def create_account():
     if (request.method == 'POST'):
+        
             email = request.form['name']
             password = request.form['password']
-            Rest_Password = request.form['Rest_Password']
-            auth.create_user_with_email_and_password(email, password)
-            return render_template('login.html')
+            
+            # Rest_Password = request.form['Rest_Password']
+            try:
+             auth.create_user_with_email_and_password(email, password)
+             return render_template('login.html')
+            except:
+             return render_template("register.html", message="Email is already taken or password has less than 6 letters" )  
+
+            return render_template("register.html")
+ 
     return render_template('register.html')
+
+
+    # if request.method == 'POST':
+		
+	# 	if request.form['submit'] == 'add':
+	# 	# while request.form['submit'] == 'add':
+	# 		name = request.form['name']
+	# 		lname = request.form['lname']
+	# 		db.child(name).set({
+	# 			'name': name,
+	# 			'lname': lname
+				
+	# 		})
+		
+	# 		todo=db.get()
+	# 		to=todo.val()
+    #  return render_template('add.html',data=to.values() )
+
     # if request.method == "POST":        #Only listen to POST
     #     result = request.form           #Get the data submitted
     #     email = result["email"]
@@ -123,7 +169,7 @@ def create_account():
     #     else:
     #         return redirect(url_for('register.html'))
 
-   
+
 
 
 @app.route('/ask')
@@ -133,25 +179,35 @@ def ask():
 
 
 @app.route('/add', methods=['GET', 'POST'])
+def reg():
+    
+	if request.method == 'POST':
+		if request.form['submit'] == 'submit':
+
+			name = request.form['name']
+			db.child("todo").push(name)
+			todo = db.child("todo").get()
+			to = todo.val()
+			return render_template('register.html', t=to.values())
+		
+	return render_template('register.html')
+			
+	return render_template('register.html')
+    
+@app.route('/feedback', methods=['GET', 'POST'])
 def add():
 	if request.method == 'POST':
-		
 		if request.form['submit'] == 'add':
-		# while request.form['submit'] == 'add':
+
 			name = request.form['name']
-			lname = request.form['lname']
-			db.child(name).set({
-				'name': name,
-				'lname': lname
-				
-			})
+			db.child("todo").push(name)
+			todo = db.child("todo").get()
+			to = todo.val()
+			return render_template('feedback.html', t=to.values())
 		
-			todo=db.get()
-			to=todo.val()
-			return render_template('add.html',data=to.values() )
-		
-		
-	return render_template('add.html')
+	return render_template('feedback.html')
+
+
 
 @app.route('/chat')
 def hello_world():

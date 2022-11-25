@@ -37,6 +37,7 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/ask">Ask</a>
           </li>
+         
           
         </ul>
         <form class="d-flex">
@@ -45,6 +46,14 @@
       </div>
     </div>
   </nav>
+  <style>
+    
+    body {
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-image:url({{url_for('static', filename='Images/interface.png')}});
+     }
+ </style>
   
       <form id="register"class="m-5 col-md-3 align-center"action="/login" method="post">
         <!-- Email input -->
@@ -86,7 +95,7 @@
 <br></br>
 <br></br>
 
-<footer class=" text-center text-white"  style="background-color: rgba(0, 0, 0, 0.2);">
+<footer class=" text-center text-white"  style="background-color: rgba(206, 227, 227, 0.207);">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -95,7 +104,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #3b5998;"
-          href="#!"
+          href="https://www.facebook.com/"
           role="button"
           ><i class="fab fa-facebook-f "></i
         ></a>
@@ -104,7 +113,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #55acee;"
-          href="#!"
+          href="https://twitter.com/i/flow/login"
           role="button"
           ><i class="fab fa-twitter"></i
         ></a>
@@ -115,7 +124,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #0082ca;"
-          href="#!"
+          href="https://www.linkedin.com/"
           role="button"
           ><i class="fab fa-linkedin-in"></i
         ></a>
@@ -123,7 +132,7 @@
         <a
           class="btn btn-primary btn-floating m-1"
           style="background-color: #333333;"
-          href="#!"
+          href="https://github.com/"
           role="button"
           ><i class="fab fa-github"></i
         ></a>
@@ -135,7 +144,7 @@
     <!-- Copyright -->
     <div class="text-center p-3">
       © 2022 SIMAchatbot
-      <a class="text-white" href="https://SIMAchatbot.com/">SIMAchatbot</a>
+      <a class="text-white" href="https://SIMAchatbot.com/"></a>
     </div>
     <!-- Copyright -->
   </footer>
